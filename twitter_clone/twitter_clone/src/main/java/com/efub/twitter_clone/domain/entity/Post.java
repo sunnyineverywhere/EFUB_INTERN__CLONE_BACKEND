@@ -1,17 +1,24 @@
 package com.efub.twitter_clone.domain.entity;
 
 import lombok.*;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
 import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Entity
+@EntityScan
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
 public class Post {
 
+    private String user_id;
+    private String nickname;
     @Id
     @GeneratedValue
     private Long post_id; //AUTO_INCREMENT
@@ -20,19 +27,25 @@ public class Post {
     private String contents;
 
 
-    @Temporal(TemporalType.TIMESTAMP)//자동 생성을 위해
-    private Date post_date;
+
+    @CreatedDate
+    private LocalDateTime createAt;
+
+    @LastModifiedDate
+    private LocalDateTime updateAt;
 
     @ManyToOne(targetEntity = User.class) //단반향
-    @JoinColumn(name = "user_id", updatable = false)
-    private User user;
-    //private Long user_id;
+    @JoinColumn(name = "num", updatable = false)
+    private Long num;
+
 
     @Builder
-    public Post(User user, String contents)
+    public Post(String user_id, String nickname , String contents)
     {
-        this.user = user;
+        this.nickname = nickname;
+        this.user_id = user_id;
         this.contents = contents;
+
     }
 
 
