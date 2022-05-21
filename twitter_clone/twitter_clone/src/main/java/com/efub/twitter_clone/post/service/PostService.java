@@ -10,6 +10,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+
 @Service
 @RequiredArgsConstructor
 public class PostService {
@@ -29,11 +31,13 @@ public class PostService {
         return postResponseDTO;
     }*/
     @Transactional
-    public static PostResponseDTO updatePost(PostRequestDTO postRequestDTO)
+    public PostResponseDTO updatePost(PostRequestDTO postRequestDTO)
     {
+
         Post post = Post.builder()
-                .user(postRequestDTO.getUser())
+                .user_id(postRequestDTO.getUser_id())
                 .contents(postRequestDTO.getContents())
+                .nickname(postRequestDTO.getNickname())
                 .build();
         Post saved = postRepository.save(post);
         return buildPostDTO(saved);
