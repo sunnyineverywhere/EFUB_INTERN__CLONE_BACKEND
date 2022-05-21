@@ -4,7 +4,7 @@ import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.sql.Date;
+import java.util.Date;
 
 @Getter
 @Entity
@@ -24,7 +24,7 @@ public class Post {
     private Date post_date;
 
     @ManyToOne(targetEntity = User.class) //단반향
-    @JoinColumn(name = "user_id", updatable = false)
+    @JoinColumn(name = "num", updatable = false)
     private User user;
     //private Long user_id;
 

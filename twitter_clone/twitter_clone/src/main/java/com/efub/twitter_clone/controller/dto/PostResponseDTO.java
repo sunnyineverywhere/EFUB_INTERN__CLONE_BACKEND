@@ -1,5 +1,6 @@
 package com.efub.twitter_clone.controller.dto;
 
+// 응답
 
 import com.efub.twitter_clone.domain.entity.Post;
 import com.efub.twitter_clone.domain.entity.User;
@@ -17,7 +18,7 @@ public class PostResponseDTO {
     private Long post_id;
     private String contents;
     private Date post_date;
-    private Long user_id;
+    private Long user_num;
     private String nickname;
     private User user;
 
@@ -34,10 +35,8 @@ public class PostResponseDTO {
     @Builder
     public PostResponseDTO(Post entity){
         this.post_id = entity.getPost_id();
-        this.user_id = entity.getUser().getUser_id();
+        this.user_num = entity.getUser().getUser_num();
         this.contents = entity.getContents();
         this.nickname = entity.getUser().getNickname();
-
-        this.post_date = entity.getPost_date();
     }
 }

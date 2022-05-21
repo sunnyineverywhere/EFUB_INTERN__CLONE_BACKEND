@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+// 요청
+
 @Getter
 @NoArgsConstructor
 public class PostRequestDTO {
@@ -18,7 +20,6 @@ public class PostRequestDTO {
     {
         this.user = user;
         this.contents = contents;
-
     }
 
 }

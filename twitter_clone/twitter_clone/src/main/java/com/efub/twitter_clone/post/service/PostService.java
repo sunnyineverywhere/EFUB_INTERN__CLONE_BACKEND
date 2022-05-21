@@ -28,18 +28,34 @@ public class PostService {
                 .nickname(post.getUser().getNickname())
         return postResponseDTO;
     }*/
+
+    
+    
     @Transactional
-    public static PostResponseDTO updatePost(PostRequestDTO postRequestDTO)
-    {
+    public Post savePost(PostResponseDTO postDto){
         Post post = Post.builder()
-                .user(postRequestDTO.getUser())
-                .contents(postRequestDTO.getContents())
+                .contents(postDto.getContents())
+                .user(postDto.getUser())
                 .build();
-        Post saved = postRepository.save(post);
-        return buildPostDTO(saved);
+        return post;
     }
 
 
+    /*
+    @Transactional
+    public static PostResponseDTO updatePost(PostRequestDTO postRequestDTO)
+    {
+        PostRe post = Post.builder()
+                .user(postRequestDTO.getUser())
+                .contents(postRequestDTO.getContents())
+                .build();
+        // Post saved = postRepository.save(post);
+        // return buildPostDTO(saved);
+        return PostResponseDTO;
+    }
+    */
+
+    /*
     @Transactional
     public void deletePost(Long post_id){ //로그인 기능이 없기 때문에 모두가 삭제 가능
         postRepository.deleteById(post_id);
@@ -48,6 +64,8 @@ public class PostService {
     public PostResponseDTO buildPostDTO(Post post) {
         return new PostResponseDTO(post);
     }
+
+     */
 
 
 }
