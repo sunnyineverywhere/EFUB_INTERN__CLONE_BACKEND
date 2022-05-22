@@ -3,15 +3,18 @@ package com.efub.twitter_clone.domain.entity;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
 
+@EntityScan
 @Entity
 @Getter
 @NoArgsConstructor
 public class User{
     @Id
-    private Long user_num;
+    @GeneratedValue
+    private Long num; //AUTO_INCREMENT
 
     @Column(length = 45, nullable = false)
     private String user_id;

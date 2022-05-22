@@ -4,7 +4,8 @@ import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDateTime;
 
 @Getter
 @Entity
@@ -21,10 +22,10 @@ public class Post {
 
 
     @Temporal(TemporalType.TIMESTAMP)//자동 생성을 위해
-    private Date post_date;
+    private LocalDateTime post_date;
 
     @ManyToOne(targetEntity = User.class) //단반향
-    @JoinColumn(name = "num", updatable = false)
+    @JoinColumn(name = "user_num", updatable = false)
     private User user;
     //private Long user_id;
 
