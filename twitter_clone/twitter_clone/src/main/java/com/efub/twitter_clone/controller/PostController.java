@@ -10,24 +10,17 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+
 @RequiredArgsConstructor
 @RestController
 public class PostController {
     private final PostService postService;
-
 
     // 됨
     @GetMapping("/post")
     public List<PostResponseDTO> postResponseDTOList(){
         return postService.getPosts();
     }
-
-    /*
-    @GetMapping("/post/{user_id}/{post_id}")
-    public PostResponseDTO postResponseDTO(@PathVariable("user_id") String userId, @PathVariable("post_id") Long postId){
-
-    }
-    */
 
 
     @PostMapping("/post")
@@ -38,16 +31,5 @@ public class PostController {
         return "post complete";
     }
 
-
-    /*
-    @DeleteMapping("/post/{id}")
-    public String deletePost(@PathVariable("id") Long id)
-    {
-        postService.deletePost(id); //postservice에 있는 함수
-        return "redirect:/";
-    }
-
-
-     */
 
 }

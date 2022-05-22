@@ -19,7 +19,6 @@ public class PostResponseDTO {
     private String contents;
     private String userId;
     private String nickname;
-    private Date postDate;
 
     
     @Builder
@@ -28,6 +27,6 @@ public class PostResponseDTO {
         this.contents = entity.getContents();
         this.userId= entity.getUser().getUserId();
         this.nickname = entity.getUser().getNickname();
-        this.postDate = entity.getPostDate();
+
     }
 }

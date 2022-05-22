@@ -28,7 +28,6 @@ public class PostService {
         return new PostResponseDTO(post);
     }
 
-
     @Transactional
     public List<PostResponseDTO> getPosts(){
         List<Post> postList = postRepository.findAll();
