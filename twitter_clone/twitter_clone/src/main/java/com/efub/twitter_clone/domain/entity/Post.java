@@ -11,7 +11,8 @@ import java.util.Date;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
-public class Post {
+@Table(name = "post")
+public class Post extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,6 +24,7 @@ public class Post {
     @Temporal(TemporalType.TIMESTAMP)//자동 생성을 위해
     private Date postDate;
 
+
     @ManyToOne(targetEntity = User.class) //단반향
     @JoinColumn(name = "userNum", updatable = false)
     private User user;
@@ -33,9 +35,6 @@ public class Post {
         this.user = user;
         this.contents = contents;
     }
-
-
-
 
 }
 

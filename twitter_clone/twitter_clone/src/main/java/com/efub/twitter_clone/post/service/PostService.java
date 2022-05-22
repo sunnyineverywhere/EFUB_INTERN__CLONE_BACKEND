@@ -8,15 +8,20 @@ import com.efub.twitter_clone.domain.entity.User;
 import com.efub.twitter_clone.domain.repository.PostRepository;
 import com.efub.twitter_clone.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
 public class PostService {
+    @Autowired
     private final PostRepository postRepository;
+
+    @Autowired
     private final UserRepository userRepository;
 
     public PostResponseDTO buildPostDTO(Post post){
@@ -50,14 +55,19 @@ public class PostService {
     }
 
 
-    /*
+
     @Transactional
     public List<PostResponseDTO> getPosts(){
         List<Post> postList = postRepository.findAll();
-
+        List<PostResponseDTO> postResponseDTOList = new ArrayList<>();
+        for(Post post: postList){
+            PostResponseDTO postResponseDTO = buildPostDTO(post);
+            postResponseDTOList.add(postResponseDTO);
+        }
+        return postResponseDTOList;
     }
 
-*/
+
 
 /*
     @Transactional
