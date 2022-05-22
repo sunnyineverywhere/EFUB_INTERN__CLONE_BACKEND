@@ -7,26 +7,27 @@ import com.efub.twitter_clone.domain.entity.User;
 import lombok.*;
 
 
-import java.time.LocalDateTime;
 
-import java.sql.Date;
+
+
+import java.util.Date;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class PostResponseDTO {
-    private Long post_id;
+    private Long postId;
     private String contents;
-    private String user_id;
+    private String userId;
     private String nickname;
-    private LocalDateTime post_date;
+    private Date postDate;
 
     
     @Builder
     public PostResponseDTO(Post entity){
-        this.post_id = entity.getPost_id();
+        this.postId = entity.getPostId();
         this.contents = entity.getContents();
-        this.user_id= entity.getUser().getUser_id();
+        this.userId= entity.getUser().getUserId();
         this.nickname = entity.getUser().getNickname();
-        this.post_date = entity.getPost_date();
+        this.postDate = entity.getPostDate();
     }
 }

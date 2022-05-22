@@ -1,23 +1,26 @@
 package com.efub.twitter_clone.domain.entity;
 
+import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @EntityScan
 @Entity
 @Getter
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class User{
     @Id
-    @GeneratedValue
-    private Long num; //AUTO_INCREMENT
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long userNum; //AUTO_INCREMENT
 
     @Column(length = 45, nullable = false)
-    private String user_id;
+    private String userId;
 
     @Column(length = 45, nullable = false)
     private String nickname;
@@ -25,12 +28,12 @@ public class User{
     @Column(length = 100, nullable = false)
     private String password;
 
+
     @Builder
-    public User(String user_id, String nickname, String password)
+    public User(String userId, String nickname)
     {
-        this.user_id = user_id;
+        this.userId = userId;
         this.nickname = nickname;
-        this.password = password;
     }
 
 }

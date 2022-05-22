@@ -12,10 +12,11 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
     private final PostService postService;
 
+
     @GetMapping("/post/{id}")
     public String getPost(@PathVariable("id") Long id)
     {
-        return "board/list.html";
+        return "get complete";
     }
 
 
@@ -27,18 +28,23 @@ public class PostController {
         return "board/update.html"; //업데이트 화면으로 이동
     }*/
 
-    @PutMapping("/post/{id}")
+    @PostMapping("/post")
     public String update(PostRequestDTO postRequestDTO)
     {
-        PostService.updatePost(postRequestDTO); //글쓰기 할 때 구현했던 곳에 저장한다.
-        return "redirect:/";
+        postService.savePost(postRequestDTO);
+        return "post complete";
     }
 
+
+    /*
     @DeleteMapping("/post/{id}")
     public String deletePost(@PathVariable("id") Long id)
     {
         postService.deletePost(id); //postservice에 있는 함수
         return "redirect:/";
     }
+
+
+     */
 
 }

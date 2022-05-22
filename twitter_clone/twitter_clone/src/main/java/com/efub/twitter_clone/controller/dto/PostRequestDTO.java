@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class PostRequestDTO {
-    private User user;
+    private Long userNum;
     private String contents;
 
     @Builder
-    public PostRequestDTO(User user, String contents)
+    public PostRequestDTO(Long userNum, String contents)
     {
-        this.user = user;
+        this.userNum = userNum;
         this.contents = contents;
     }
 

@@ -4,8 +4,8 @@ import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.sql.Date;
 import java.time.LocalDateTime;
+import java.util.Date;
 
 @Getter
 @Entity
@@ -14,20 +14,18 @@ import java.time.LocalDateTime;
 public class Post {
 
     @Id
-    @GeneratedValue
-    private Long post_id; //AUTO_INCREMENT
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long postId; //AUTO_INCREMENT
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String contents;
 
-
     @Temporal(TemporalType.TIMESTAMP)//자동 생성을 위해
-    private LocalDateTime post_date;
+    private Date postDate;
 
     @ManyToOne(targetEntity = User.class) //단반향
-    @JoinColumn(name = "user_num", updatable = false)
+    @JoinColumn(name = "userNum", updatable = false)
     private User user;
-    //private Long user_id;
 
     @Builder
     public Post(User user, String contents)

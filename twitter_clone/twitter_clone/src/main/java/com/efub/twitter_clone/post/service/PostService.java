@@ -4,17 +4,24 @@ import com.efub.twitter_clone.controller.dto.PostRequestDTO;
 import com.efub.twitter_clone.controller.dto.PostResponseDTO;
 
 import com.efub.twitter_clone.domain.entity.Post;
+import com.efub.twitter_clone.domain.entity.User;
 import com.efub.twitter_clone.domain.repository.PostRepository;
 import com.efub.twitter_clone.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
     private final UserRepository userRepository;
+
+    public PostResponseDTO buildPostDTO(Post post){
+        return new PostResponseDTO(post);
+    }
 
 
     /*@Transactional
@@ -28,10 +35,29 @@ public class PostService {
                 .nickname(post.getUser().getNickname())
         return postResponseDTO;
     }*/
+
+
     @Transactional
-    public static PostResponseDTO savePost(PostRequestDTO postRequestDTO)
+    public PostResponseDTO savePost(PostRequestDTO postRequestDTO)
     {
+        User user = userRepository.getByUserNum(postRequestDTO.getUserNum());
+        Post post = Post.builder()
+                .user(user)
+                .contents(postRequestDTO.getContents())
+                .build();
+        Post resPost = postRepository.save(post);
+        return buildPostDTO(resPost);
     }
+
+
+    /*
+    @Transactional
+    public List<PostResponseDTO> getPosts(){
+        List<Post> postList = postRepository.findAll();
+
+    }
+
+*/
 
 /*
     @Transactional
