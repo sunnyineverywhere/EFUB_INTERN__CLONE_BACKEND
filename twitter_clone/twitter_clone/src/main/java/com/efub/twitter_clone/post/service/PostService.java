@@ -29,33 +29,6 @@ public class PostService {
     }
 
 
-    /*@Transactional
-    public PostResponseDTO getPost(Long id)
-    {
-        Post post = postRepository.findById().get();
-
-        PostResponseDTO postResponseDTO = PostResponseDTO.builder()
-                .contents(post.getContents())
-                .post_date(post.getPost_date())
-                .nickname(post.getUser().getNickname())
-        return postResponseDTO;
-    }*/
-
-
-    @Transactional
-    public PostResponseDTO savePost(PostRequestDTO postRequestDTO)
-    {
-        User user = userRepository.getByUserNum(postRequestDTO.getUserNum());
-        Post post = Post.builder()
-                .user(user)
-                .contents(postRequestDTO.getContents())
-                .build();
-        Post resPost = postRepository.save(post);
-        return buildPostDTO(resPost);
-    }
-
-
-
     @Transactional
     public List<PostResponseDTO> getPosts(){
         List<Post> postList = postRepository.findAll();
@@ -66,6 +39,33 @@ public class PostService {
         }
         return postResponseDTOList;
     }
+
+
+
+    /*
+    @Transactional
+    public PostResponseDTO getPost(){
+
+    }
+
+     */
+
+    @Transactional
+    public PostResponseDTO savePost(PostRequestDTO postRequestDTO)
+    {
+        User user = userRepository.getByUserNum(postRequestDTO.getUserNum());
+        Post post = Post.builder()
+                .user(user)
+                .contents(postRequestDTO.getContents())
+                .build();
+        Post resPost = postRepository.save(post);
+
+        return buildPostDTO(resPost);
+    }
+
+
+
+
 
 
 
