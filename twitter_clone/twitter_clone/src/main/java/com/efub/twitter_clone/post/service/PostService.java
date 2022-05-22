@@ -41,14 +41,11 @@ public class PostService {
     }
 
 
-
-    /*
     @Transactional
-    public PostResponseDTO getPost(){
-
+    public PostResponseDTO getPost(Long postId){
+        Post post = postRepository.findById(postId).get();
+        return buildPostDTO(post);
     }
-
-     */
 
     @Transactional
     public PostResponseDTO savePost(PostRequestDTO postRequestDTO)
@@ -64,11 +61,12 @@ public class PostService {
     }
 
     @Transactional
-    public void deletePost(String nickname, Long postId){ //로그인 기능이 없기 때문에 모두가 삭제 가능
+    public void deletePost(Long userNum, Long postId){ //로그인 기능이 없기 때문에 모두가 삭제 가능
 
         User user = postRepository.findById(postId).get().getUser();
-        if (Objects.equals(user.getNickname(), nickname))
+        if(user.getUserNum() == userNum){
             postRepository.deleteById(postId);
+        }
 
 
     }

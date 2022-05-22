@@ -5,7 +5,6 @@ import com.efub.twitter_clone.controller.dto.PostResponseDTO;
 import com.efub.twitter_clone.post.service.PostService;
 import com.efub.twitter_clone.controller.dto.PostRequestDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +21,19 @@ public class PostController {
         return postService.getPosts();
     }
 
+    @PutMapping("/post/{id}") //수정 저장
+    public String updatePost(@RequestBody PostRequestDTO postDTO){
+        postService.savePost(postDTO);
+        return "OK";
+
+    }
+    @GetMapping("/post/{id}")
+    public String edit(@PathVariable Long id){
+        PostResponseDTO postResponseDTO  = postService.getPost(id);
+        return "OK";
+
+    }
+
 
     @PostMapping("/post")
     // requestbody를 dto형으로 받음
@@ -31,10 +43,10 @@ public class PostController {
         return "post complete";
     }
 
-    @DeleteMapping("/post/{nickname}/{id}")
-    public String deletePost(@PathVariable("nickname") String nickname , @PathVariable("id") Long id)
+    @DeleteMapping("/post/{userNum}/{id}")
+    public String deletePost(@PathVariable("userNum") Long userNum , @PathVariable("id") Long id)
     {
-        postService.deletePost(nickname, id); //postservice에 있는 함수
+        postService.deletePost(userNum, id); //postservice에 있는 함수
         return "delete compelete";
     }
 
