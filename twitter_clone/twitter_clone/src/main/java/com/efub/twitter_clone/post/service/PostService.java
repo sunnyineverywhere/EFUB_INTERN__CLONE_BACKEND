@@ -14,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -58,6 +58,15 @@ public class PostService {
         Post resPost = postRepository.save(post);
 
         return buildPostDTO(resPost);
+    }
+
+
+    @Transactional
+    public Long update(Long id, PostRequestDTO requestDto)
+    {
+        Post post = postRepository.findById(id) .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + id));
+        post.update(requestDto.getContents());
+        return id;
     }
 
     @Transactional

@@ -21,17 +21,20 @@ public class Post extends BaseTimeEntity{
     @Column(columnDefinition = "TEXT", nullable = false)
     private String contents;
 
-    @Temporal(TemporalType.TIMESTAMP)//자동 생성을 위해
-    private Date postDate;
 
 
     @ManyToOne(targetEntity = User.class) //단반향
     @JoinColumn(name = "userNum", updatable = false)
     private User user;
 
+    public void update(String contents) {
+        this.contents = contents;
+    }
+
     @Builder
-    public Post(User user, String contents)
+    public Post(Long postId, User user, String contents)
     {
+        this.postId = postId;
         this.user = user;
         this.contents = contents;
     }

@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class PostRequestDTO {
+    private Long postId;
     private Long userNum;
     private String contents;
 
@@ -21,5 +22,8 @@ public class PostRequestDTO {
         this.userNum = userNum;
         this.contents = contents;
     }
+
+
+
 
 }

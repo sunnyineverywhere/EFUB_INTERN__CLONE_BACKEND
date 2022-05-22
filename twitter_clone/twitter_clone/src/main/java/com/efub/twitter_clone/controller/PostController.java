@@ -21,19 +21,16 @@ public class PostController {
         return postService.getPosts();
     }
 
-    @PutMapping("/post/{id}") //수정 저장
-    public String updatePost(@RequestBody PostRequestDTO postDTO){
-        postService.savePost(postDTO);
-        return "OK";
+    @PutMapping("post/{id}")
+    public Long update(@PathVariable Long id, @RequestBody PostRequestDTO requestDto)
+    { return postService.update(id, requestDto); }
 
-    }
     @GetMapping("/post/{id}")
     public String edit(@PathVariable Long id){
         PostResponseDTO postResponseDTO  = postService.getPost(id);
         return "OK";
 
     }
-
 
     @PostMapping("/post")
     // requestbody를 dto형으로 받음
