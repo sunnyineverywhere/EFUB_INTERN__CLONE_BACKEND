@@ -31,5 +31,12 @@ public class PostController {
         return "post complete";
     }
 
+    @DeleteMapping("/post/{nickname}/{id}")
+    public String deletePost(@PathVariable("nickname") String nickname , @PathVariable("id") Long id)
+    {
+        postService.deletePost(nickname, id); //postservice에 있는 함수
+        return "delete compelete";
+    }
+
 
 }

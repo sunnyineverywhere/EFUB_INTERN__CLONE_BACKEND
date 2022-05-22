@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -62,21 +63,18 @@ public class PostService {
         return buildPostDTO(resPost);
     }
 
-
-
-
-
-
-
-/*
     @Transactional
-    public void deletePost(Long post_id){ //로그인 기능이 없기 때문에 모두가 삭제 가능
-        postRepository.deleteById(post_id);
+    public void deletePost(String nickname, Long postId){ //로그인 기능이 없기 때문에 모두가 삭제 가능
+
+        User user = postRepository.findById(postId).get().getUser();
+        if (Objects.equals(user.getNickname(), nickname))
+            postRepository.deleteById(postId);
+
+
     }
 
-    public PostResponseDTO buildPostDTO(Post post) {
-        return new PostResponseDTO(post);
-    }
 
-*/
+
+
+
 }
