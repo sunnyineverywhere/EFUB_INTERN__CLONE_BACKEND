@@ -23,7 +23,5 @@ public class PostRequestDTO {
         this.contents = contents;
     }
 
-
-
-
 }
+

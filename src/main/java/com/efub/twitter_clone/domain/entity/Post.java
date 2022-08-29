@@ -21,8 +21,6 @@ public class Post extends BaseTimeEntity{
     @Column(columnDefinition = "TEXT", nullable = false)
     private String contents;
 
-
-
     @ManyToOne(targetEntity = User.class) //단반향
     @JoinColumn(name = "userNum", updatable = false)
     private User user;

@@ -15,7 +15,6 @@ import java.util.List;
 public class PostController {
     private final PostService postService;
 
-    // 됨
     @GetMapping("/post")
     public List<PostResponseDTO> postResponseDTOList(){
         return postService.getPosts();

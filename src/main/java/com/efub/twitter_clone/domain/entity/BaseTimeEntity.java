@@ -1,7 +1,6 @@
 package com.efub.twitter_clone.domain.entity;
 
 import lombok.Getter;
-import org.apache.tomcat.jni.Local;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -16,9 +15,9 @@ import java.time.LocalDateTime;
 public abstract class BaseTimeEntity {
 
     @CreatedDate
-    private LocalDateTime createAt;
+    private LocalDateTime createdAt;
 
     @LastModifiedDate
-    private LocalDateTime updateAt정;
+    private LocalDateTime updateAt;
 
 }
