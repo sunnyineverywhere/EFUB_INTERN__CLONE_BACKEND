@@ -31,8 +31,25 @@ dependencies {
 	runtimeOnly 'org.webjars:bootstrap:4.5.0'
 	testImplementation "org.assertj:assertj-core:3.20.2"
 	testImplementation group: 'org.assertj', name: 'assertj-core', version: '3.19.0'
+
+	/* security
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	testImplementation 'org.springframework.security:spring-security-test'
+	implementation 'io.jsonwebtoken:jjwt:0.9.1'
+	*/
+
+
+	//vaildatoin
+	implementation('org.springframework.boot:spring-boot-starter-validation')
+
+	//resourceNotFount 오류를 위해
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
+}
+
+bootJar {
+	mainClass = 'com.efub.twitter_clone.TwitterCloneApplication'
 }
