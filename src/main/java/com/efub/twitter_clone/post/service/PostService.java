@@ -4,26 +4,23 @@ import com.efub.twitter_clone.controller.dto.PostRequestDTO;
 import com.efub.twitter_clone.controller.dto.PostResponseDTO;
 
 import com.efub.twitter_clone.domain.entity.Post;
-import com.efub.twitter_clone.domain.entity.User;
+import com.efub.twitter_clone.domain.entity.Member;
+import com.efub.twitter_clone.domain.repository.MemberRepository;
 import com.efub.twitter_clone.domain.repository.PostRepository;
-import com.efub.twitter_clone.domain.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 public class PostService {
-    @Autowired
+
     private final PostRepository postRepository;
 
-    @Autowired
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
     public PostResponseDTO buildPostDTO(Post post){
         return new PostResponseDTO(post);
@@ -50,9 +47,10 @@ public class PostService {
     @Transactional
     public PostResponseDTO savePost(PostRequestDTO postRequestDTO)
     {
-        User user = userRepository.getByUserNum(postRequestDTO.getUserNum());
+        Member member = memberRepository.getByMemberId(postRequestDTO.getMemberId())
+                .orElseThrow();//todo: 에러 핸들링 추가
         Post post = Post.builder()
-                .user(user)
+                .member(member)
                 .contents(postRequestDTO.getContents())
                 .build();
         Post resPost = postRepository.save(post);
@@ -70,10 +68,11 @@ public class PostService {
     }
 
     @Transactional
-    public void deletePost(Long userNum, Long postId){ //로그인 기능이 없기 때문에 모두가 삭제 가능
+    public void deletePost(Long memberId, Long postId){ //로그인 기능이 없기 때문에 모두가 삭제 가능
+        //Todo : 로그인 기능 이후 로그인한 유저 적용 필요
 
-        User user = postRepository.findById(postId).get().getUser();
-        if(user.getUserNum() == userNum){
+        Member member = postRepository.findById(postId).get().getMember();
+        if(member.getMemberId().equals(memberId)){
             postRepository.deleteById(postId);
         }
 

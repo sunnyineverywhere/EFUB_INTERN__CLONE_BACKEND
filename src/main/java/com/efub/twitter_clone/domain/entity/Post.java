@@ -4,8 +4,6 @@ import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import javax.persistence.*;
-import java.time.LocalDateTime;
-import java.util.Date;
 
 @Getter
 @Entity
@@ -21,19 +19,19 @@ public class Post extends BaseTimeEntity{
     @Column(columnDefinition = "TEXT", nullable = false)
     private String contents;
 
-    @ManyToOne(targetEntity = User.class) //단반향
-    @JoinColumn(name = "userNum", updatable = false)
-    private User user;
+    @ManyToOne//단반향
+    @JoinColumn(name = "member_id")
+    private Member member;
 
     public void update(String contents) {
         this.contents = contents;
     }
 
     @Builder
-    public Post(Long postId, User user, String contents)
+    public Post(Long postId, Member member, String contents)
     {
         this.postId = postId;
-        this.user = user;
+        this.member = member;
         this.contents = contents;
     }
 
