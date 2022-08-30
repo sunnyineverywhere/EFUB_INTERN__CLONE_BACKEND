@@ -1,8 +1,5 @@
 package com.efub.twitter_clone.controller.dto;
 
-import com.efub.twitter_clone.domain.entity.Post;
-
-import com.efub.twitter_clone.domain.entity.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,13 +10,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class PostRequestDTO {
     private Long postId;
-    private Long userNum;
+    private Long memberId;
     private String contents;
 
     @Builder
-    public PostRequestDTO(Long userNum, String contents)
+    public PostRequestDTO(Long memberId, String contents)
     {
-        this.userNum = userNum;
+        this.memberId = memberId;
         this.contents = contents;
     }
 
