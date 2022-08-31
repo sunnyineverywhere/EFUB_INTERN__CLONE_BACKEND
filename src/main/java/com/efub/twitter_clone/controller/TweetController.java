@@ -30,7 +30,6 @@ public class TweetController {
         return tweetResponseDTO;
     }
     @PostMapping()
-    // requestbody를 dto형으로 받음
     public String saveTweet(@AuthMember Member member, @RequestBody TweetRequestDTO postRequestDTO)
     {
         return tweetService.saveTweet(member, postRequestDTO);

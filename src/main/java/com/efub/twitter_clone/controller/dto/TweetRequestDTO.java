@@ -9,14 +9,11 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class TweetRequestDTO {
-    private Long postId;
-    private Long memberId;
     private String contents;
 
     @Builder
-    public TweetRequestDTO(Long memberId, String contents)
+    public TweetRequestDTO(String contents)
     {
-        this.memberId = memberId;
         this.contents = contents;
     }
 

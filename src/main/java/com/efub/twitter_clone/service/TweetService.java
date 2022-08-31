@@ -47,6 +47,7 @@ public class TweetService {
     @Transactional
     public String saveTweet(Member member, TweetRequestDTO tweetRequestDTO)
     {
+        System.out.println(member);
         Tweet tweet = Tweet.builder()
                 .member(member)
                 .contents(tweetRequestDTO.getContents())
@@ -72,7 +73,6 @@ public class TweetService {
     @Transactional
     public String deleteTweet(Member member, Long tweetId){
         //Todo : 로그인 기능 이후 로그인한 유저 적용 필요
-
         Tweet tweet = tweetRepository.findById(tweetId).get();
         if(tweet.getMember().equals(member)){
             tweetRepository.deleteById(tweetId);

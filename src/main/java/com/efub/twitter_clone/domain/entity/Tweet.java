@@ -14,7 +14,7 @@ public class Tweet extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long postId; //AUTO_INCREMENT
+    private Long tweetId; //AUTO_INCREMENT
 
     @Column(columnDefinition = "TEXT", nullable = false)
     private String contents;
@@ -28,9 +28,9 @@ public class Tweet extends BaseTimeEntity{
     }
 
     @Builder
-    public Tweet(Long postId, Member member, String contents)
+    public Tweet(Long tweetId, Member member, String contents)
     {
-        this.postId = postId;
+        this.tweetId = tweetId;
         this.member = member;
         this.contents = contents;
     }

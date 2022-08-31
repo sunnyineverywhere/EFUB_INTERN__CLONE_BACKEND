@@ -16,7 +16,7 @@ public class TweetResponseDTO {
     
     @Builder
     public TweetResponseDTO(Tweet entity){
-        this.postId = entity.getPostId();
+        this.postId = entity.getTweetId();
         this.contents = entity.getContents();
         this.memberId= entity.getMember().getMemberId();
         this.nickname = entity.getMember().getNickname();
