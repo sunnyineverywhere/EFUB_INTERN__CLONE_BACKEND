@@ -1,17 +1,13 @@
 package com.efub.twitter_clone.domain.entity;
 
-import com.efub.twitter_clone.domain.entity.BaseTimeEntity;
-import com.efub.twitter_clone.domain.entity.Post;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Setter
 @Getter

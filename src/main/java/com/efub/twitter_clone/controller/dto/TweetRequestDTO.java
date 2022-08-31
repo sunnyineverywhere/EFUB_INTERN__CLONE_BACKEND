@@ -8,13 +8,13 @@ import lombok.NoArgsConstructor;
 
 @Getter
 @NoArgsConstructor
-public class PostRequestDTO {
+public class TweetRequestDTO {
     private Long postId;
     private Long memberId;
     private String contents;
 
     @Builder
-    public PostRequestDTO(Long memberId, String contents)
+    public TweetRequestDTO(Long memberId, String contents)
     {
         this.memberId = memberId;
         this.contents = contents;

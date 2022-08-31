@@ -9,8 +9,8 @@ import javax.persistence.*;
 @Entity
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @EntityListeners(AuditingEntityListener.class)
-@Table(name = "post")
-public class Post extends BaseTimeEntity{
+@Table(name = "tweet")
+public class Tweet extends BaseTimeEntity{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -28,7 +28,7 @@ public class Post extends BaseTimeEntity{
     }
 
     @Builder
-    public Post(Long postId, Member member, String contents)
+    public Tweet(Long postId, Member member, String contents)
     {
         this.postId = postId;
         this.member = member;
