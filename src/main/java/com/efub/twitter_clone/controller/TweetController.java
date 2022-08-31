@@ -17,20 +17,15 @@ public class TweetController {
     private final TweetService tweetService;
 
     @GetMapping()
-    public List<TweetResponseDTO> tweetResponseDTOList(){
+    public List<TweetResponseDTO> loadTweetList(){
         return tweetService.getTweetList();
     }
-
-    @PutMapping("/{tweetId}")
-    public String updateTweet(@PathVariable Long tweetId, @RequestBody TweetRequestDTO requestDto)
-    { return tweetService.updateTweet(tweetId, requestDto); }
 
     @GetMapping("/{tweetId}")
     public TweetResponseDTO loadTweet(@PathVariable Long tweetId){
         TweetResponseDTO tweetResponseDTO  = tweetService.getTweet(tweetId);
         return tweetResponseDTO;
     }
-
     @PostMapping()
     // requestbody를 dto형으로 받음
     public String saveTweet(@RequestBody TweetRequestDTO postRequestDTO)
@@ -38,6 +33,9 @@ public class TweetController {
         return tweetService.saveTweet(postRequestDTO);
     }
 
+    @PutMapping("/{tweetId}")
+    public String updateTweet(@PathVariable Long tweetId, @RequestBody TweetRequestDTO requestDto)
+    { return tweetService.updateTweet(tweetId, requestDto); }
     @DeleteMapping("/{tweetId}")
     public String deleteTweet(@PathVariable("tweetId") Long tweetId)
     {
