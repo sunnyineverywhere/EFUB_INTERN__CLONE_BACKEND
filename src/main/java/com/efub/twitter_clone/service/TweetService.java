@@ -45,10 +45,8 @@ public class TweetService {
     }
 
     @Transactional
-    public String saveTweet(TweetRequestDTO tweetRequestDTO)
+    public String saveTweet(Member member, TweetRequestDTO tweetRequestDTO)
     {
-        Member member = memberRepository.getByMemberId(tweetRequestDTO.getMemberId())
-                .orElseThrow();//todo: 에러 핸들링 추가
         Tweet tweet = Tweet.builder()
                 .member(member)
                 .contents(tweetRequestDTO.getContents())
@@ -59,18 +57,31 @@ public class TweetService {
     }
 
     @Transactional
-    public String updateTweet(Long tweetId, TweetRequestDTO requestDto)
+    public String updateTweet(Member member, Long tweetId, TweetRequestDTO requestDto)
     {
         Tweet tweet = tweetRepository.findById(tweetId) .orElseThrow(() -> new IllegalArgumentException("해당 게시글이 없습니다. id=" + tweetId));
-        tweet.update(requestDto.getContents());
-        return "성공적으로 변경되었습니다.";
+        if(tweet.getMember().equals(member)){
+            tweet.update(requestDto.getContents());
+            return "성공적으로 변경되었습니다.";
+        }
+        else{
+            return "잘못된 접근입니다.";
+        }
     }
 
     @Transactional
-    public String deleteTweet(Long postId){
+    public String deleteTweet(Member member, Long tweetId){
         //Todo : 로그인 기능 이후 로그인한 유저 적용 필요
-        tweetRepository.deleteById(postId);
-        return "성공적으로 삭제되었습니다.";
+
+        Tweet tweet = tweetRepository.findById(tweetId).get();
+        if(tweet.getMember().equals(member)){
+            tweetRepository.deleteById(tweetId);
+            return "성공적으로 삭제되었습니다.";
+        }
+        else{
+            return "잘못된 접근입니다.";
+        }
+
     }
 
 
