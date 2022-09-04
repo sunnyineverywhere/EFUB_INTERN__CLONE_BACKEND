@@ -28,16 +28,16 @@ jobs:
       with:
         java-version: '11'
         distribution: 'temurin'
-    - name: Build with Gradle
-      uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
-      with:
-        arguments: build
 
     ## create application-dev.properties
-    - name: make application-dev.properties
-      if: contains(github.ref, 'develop') # branch가 develop일 때
+    - name: make application.properties
+      if: contains(github.ref, 'main') # branch가 develop일 때
       run:
         cd ./src/main/resources
         touch ./application.properties
         echo "${{ secrets.PROPERTIES }}" > ./application.properties 
       shell: bash
+    
+    ## gradle build
+    - name: Build with Gradle
+      run: ./gradlew build -x test -x ktlintCheck -x ktlintTestSourceSetCheck -x ktlintMainSourceSetCheck -x ktlintKotlinScriptCheck
