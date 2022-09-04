@@ -34,7 +34,7 @@ public class AppConfig {
 	@Bean
 	public CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
-		configuration.addAllowedOrigin("https://lakku-lakku.netlify.app");
+		// configuration.addAllowedOrigin("https://lakku-lakku.netlify.app");
 		configuration.addAllowedOrigin("http://localhost:3000");
 		configuration.addAllowedHeader("*");
 		configuration.addAllowedMethod("*");

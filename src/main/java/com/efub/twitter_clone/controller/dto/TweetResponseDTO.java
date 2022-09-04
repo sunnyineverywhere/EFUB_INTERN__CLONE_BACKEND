@@ -1,13 +1,13 @@
 package com.efub.twitter_clone.controller.dto;
 
 
-import com.efub.twitter_clone.domain.entity.Post;
+import com.efub.twitter_clone.domain.entity.Tweet;
 
 import lombok.*;
 
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class PostResponseDTO {
+public class TweetResponseDTO {
     private Long postId;
     private String contents;
     private Long memberId;
@@ -15,8 +15,8 @@ public class PostResponseDTO {
 
     
     @Builder
-    public PostResponseDTO(Post entity){
-        this.postId = entity.getPostId();
+    public TweetResponseDTO(Tweet entity){
+        this.postId = entity.getTweetId();
         this.contents = entity.getContents();
         this.memberId= entity.getMember().getMemberId();
         this.nickname = entity.getMember().getNickname();

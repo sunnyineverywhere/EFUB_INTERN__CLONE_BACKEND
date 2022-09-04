@@ -14,6 +14,7 @@ public class TwitterCloneApplication {
 		SpringApplication.run(TwitterCloneApplication.class, args);
 	}
 
-	@Bean //이것을 하지 않으면 PutMapping과 DeleteMapping이 작동하지 않는다.
+	@Bean
 	public HiddenHttpMethodFilter hiddenHttpMethodFilter() {return new HiddenHttpMethodFilter();}
+
 }
